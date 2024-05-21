@@ -33,7 +33,7 @@ console.log(a + b);
 console.log("subham".toUpperCase());
 //To lowercase
 console.log("SUBHam".toLowerCase());
-//Index of
+//IndexOf
 console.log("Index of ".indexOf("e"));
 //Trim
 console.log("   Subham          ".trim());
@@ -442,3 +442,642 @@ console.log(document.querySelector("#helo").innerHTML);
 document.querySelector("#helo").innerHTML =
   "<h1>Here is a  Inner HTML edit</h1>";
 document.querySelector("#helo").innerText = "Helo coders";
+//setting attributes
+document
+  .querySelector("a")
+  .setAttribute("href", "https://github.com/Subhamdas12");
+document.querySelector("a").style.color = "Blue";
+document.querySelector("a").style.backgroundColor = "Red";
+document.querySelector("a").style.fontSize = "5rem";
+document.querySelector("a").classList.add("newClass");
+document.querySelector("a").classList.replace("newClass", "newClass1");
+document.querySelector("a").classList.remove("newClass1");
+//Children
+console.log(document.querySelector(".childrenDiv").children);
+console.log(Array.from(document.querySelector(".childrenDiv").children)); //Array from convert the elements into an array
+let element = document.querySelector(".childrenDiv");
+//Like this we can add class in each element
+Array.from(document.querySelector(".childrenDiv").children).forEach(function (
+  element
+) {
+  element.classList.add("cotton");
+});
+
+console.log(Array.from(document.querySelector(".childrenDiv").children)); //Array from convert the elements into an array
+console.log(document.querySelector(".childrenDivClasses").parentElement); //Gives the parent
+console.log(
+  document.querySelector(".childrenDivmiddleChildren").previousElementSibling
+); //Gives the prev sibling
+console.log(
+  document.querySelector(".childrenDivmiddleChildren").nextElementSibling
+); //Gives the next sibling
+
+//Events
+document.querySelector("#first").addEventListener("click", function (e) {
+  console.log("You clicked on first");
+  console.log(e);
+});
+document.querySelectorAll(".childrenDiv").forEach(function (e) {
+  e.addEventListener("click", function (e) {
+    e.target.style.textDecoration = "line-through";
+  });
+});
+//Create and remove element
+document.querySelectorAll(".childrenDiv").forEach(function (e) {
+  e.addEventListener("click", function (e) {
+    e.target.remove();
+  });
+});
+
+document.querySelector(".clickMe").addEventListener("click", function () {
+  let newElem = document.createElement("h4");
+  newElem.innerText = "Helo";
+  console.log("This is working");
+  let childrenClassessDiv = document.querySelector(".childrenDiv");
+  console.log(childrenClassessDiv);
+  childrenClassessDiv.append(newElem); //Add in the end
+});
+document.querySelector(".clickMe1").addEventListener("click", function () {
+  let newElem = document.createElement("h4");
+  newElem.innerText = "Helo";
+  console.log("This is working");
+  let childrenClassessDiv = document.querySelector(".childrenDiv");
+  console.log(childrenClassessDiv);
+  childrenClassessDiv.prepend(newElem); //Add in the start
+});
+//Bubbling and deligation
+
+//ARRAYS
+let letter = [1, 2, 3, 4, 5];
+//Reverse-It mutates the array
+letter.reverse();
+console.log(letter);
+//Concat-Non mutating
+let letter2 = [6, 7, 8];
+console.log(letter.concat(letter2));
+//Join
+console.log(letter.join("-"));
+//slice-it makes a new array,doesnot mutate the original array
+console.log(letter.slice(0, 2));
+//splice-Mutating method
+let letter3 = letter.concat(letter2);
+console.log(letter3);
+console.log(letter3.splice(1, 1, 1));
+console.log(letter3); //Here the original array will be changed
+console.log(letter3.splice(1, 1, 1, 0, 0));
+console.log(letter3); //It added the elements
+//At
+console.log(letter3.at(-1)); //Getting the element
+
+//Map
+let salary = [12000, 5000, 7000, 9000];
+let newSalary = salary.map((salary) => {
+  return salary * 2;
+});
+console.log(newSalary);
+//Filter
+newSalary = salary.filter((salary) => {
+  return salary != 12000; //The one which will be true will only be kept
+});
+
+console.log(newSalary);
+//Reduce
+
+arr = [1, 2, 3];
+let sum = arr.reduce(function (total, current) {
+  console.log(total + " " + current);
+  return total + current;
+}, 0);
+console.log(sum);
+//Find methods
+//It returns the first element we are looking for
+let student = [
+  { id: 1, name: "Subham" },
+  { id: 2, name: "Das" },
+  { id: 3, name: "Alas" },
+];
+result = student.find((student) => {
+  return student.id == 1;
+});
+console.log(result);
+//Find index
+console.log(student);
+result = student.findIndex((student) => {
+  return student.id == 2;
+});
+console.log(result);
+//some and every
+//in some any of the element should satisfy the condition
+console.log(
+  salary.some((salary) => {
+    return salary > 5000;
+  })
+);
+//in every all the elements should satisfy the condition
+console.log(
+  salary.every((salary) => {
+    return salary > 5000;
+  })
+);
+//flat
+//It will remove the subarray
+arr = [12, 14, 54, [5, 4, 3, [62, 22]], 12, 66];
+console.log(arr);
+console.log(arr.flat()); //by default, it will flat 1 value
+console.log(arr.flat(2)); //here you need to say the amount of level you want to flat
+
+//flatmap
+console.log(student);
+let newStudent = student.flatMap((item) => {
+  if (item.id === 3) {
+    return [
+      item,
+      {
+        id: 4,
+        name: "Aman",
+      },
+    ];
+  } else {
+    return [item];
+  }
+});
+console.log(newStudent);
+//sorting array
+num = [1, 2, 3, 4, 5, -1, -2, -4];
+str = ["a", "b", "c", "d", "m", "f", "u"];
+console.log(str.sort());
+console.log(num.sort()); //here it is sorting according to the string
+//to use for the numbers
+
+console.log(num.sort((a, b) => a - b)); //Ascending sorting
+console.log(num.sort((a, b) => b - a)); //Descending sorting
+//Chaining of method
+num = [1, 2, 3, 4, 5, 6, 7];
+console.log(num.slice(0, 3).splice(2, 1, 7).push(1, 2, 3)); //this is called chaining where me use multiple functions together
+console.log(num); //It is not changed because slice creates a new array
+let num2 = num.slice(0, 3);
+console.log(num2);
+num2 = num2.splice(2, 1, 7);
+console.log(num2); //It is giving 3 because it returns the removed element
+console.log(num2.push(1, 2, 3)); //push returns the length of the array
+console.log(num2);
+//Date and time
+let currentDate = new Date(2021, 2, 21); //Year Month Day
+console.log(currentDate);
+console.log(new Date(0)); //0th is the time when started
+console.log(new Date().getTime()); //Total time in ms from the start date that is Thu Jan 01 1970 05:30:00
+console.log(new Date().getFullYear()); //get full year
+console.log(new Date().getMonth());
+console.log(new Date().getDay());
+console.log(new Date().getHours());
+
+//Making a clock
+let hour = document.querySelector(".hour");
+let minute = document.querySelector(".minute");
+let second = document.querySelector(".second");
+
+setInterval(() => {
+  hour.textContent =
+    new Date().getHours() > 12
+      ? new Date().getHours() - 12
+      : new Date().getHours();
+  minute.textContent = new Date().getMinutes();
+  second.textContent = new Date().getSeconds();
+}, 500);
+//Localstorage
+console.log(localStorage);
+//setitem
+localStorage.setItem("name", "Rahul");
+localStorage.setItem("age", 24);
+//getItem
+console.log(localStorage.getItem("name"));
+console.log(localStorage.getItem("age"));
+//update item
+localStorage.setItem("name", "Rukesh"); //Override the previous value
+console.log(localStorage);
+
+//Removing/Delete
+localStorage.removeItem("name");
+console.log(localStorage);
+localStorage.clear();
+//Remove all data
+console.log(localStorage);
+//using localstorage
+let vehicle = [
+  { company: "Honda", model: 2009 },
+  { company: "Maruti", model: 2023 },
+];
+
+console.log(JSON.stringify(vehicle));
+localStorage.setItem("vehicle", JSON.stringify(vehicle)); //we need to convert it into string format
+console.log(localStorage);
+let objectFormat = localStorage.getItem("vehicle");
+console.log(objectFormat); //It is a string format
+vehicle = JSON.parse(objectFormat); //Used to covert string into object again
+console.log(vehicle);
+//OOPS
+//Constructor and new operator
+let Car = function (company, model) {
+  this.company = company;
+  this.model = model;
+  //writing a function inside a function is not a good practice , insted you can use prototype
+  this.startEngine = function () {
+    console.log("Engine started");
+  };
+};
+let newInstance = new Car("Volvo", 2023);
+console.log(newInstance instanceof Car); //Going to give true or false
+console.log(newInstance);
+let instance = new Car("Maruti", 2024);
+console.log(instance);
+Car.prototype.startEngine1 = function () {
+  console.log("start Engine");
+};
+let newInstance1 = new Car("BMW", 2021);
+console.log(newInstance1);
+newInstance.startEngine();
+newInstance1.startEngine1();
+console.log(newInstance1.__proto__);
+//ES6
+class Car1 {
+  constructor(company, model) {
+    this.company = company;
+    this.model = model;
+  }
+  startEngine() {
+    console.log("Engine started");
+  }
+}
+
+let honda = new Car1("Red", 2022);
+console.log(honda);
+honda.startEngine();
+
+//Important points
+//classes are not hoisted
+//classes are also first class citizens(pass as an object)
+//Classes are executed in strict mode
+
+//Getters and Setters
+class Car2 {
+  constructor(company, model) {
+    this.company = company;
+    this.model = model;
+  }
+
+  carMethod() {
+    console.log("Car Method");
+  }
+  get getCompanyDetails() {
+    return this.company;
+  }
+
+  get getDescription() {
+    return this.company + " " + this.model;
+  }
+  set setCompanyName(company) {
+    this.company = company;
+  }
+}
+
+honda = new Car2("Honda", 2023);
+console.log(honda.getCompanyDetails);
+honda.setCompanyName = "BMW";
+console.log(honda.getCompanyDetails);
+console.log(honda.getDescription);
+//Static method
+Car2.breakMethod = function () {
+  console.log("Break Method");
+};
+Car2.breakMethod(); //static method
+//uses of static method
+console.log(JSON.stringify(vehicle));
+console.log(JSON.parse(JSON.stringify(vehicle)));
+console.log(Number.parseInt("22"));
+console.log(Array.from(document.querySelector(".childrenDiv").children)); //Array from convert the elements into an array
+
+//Inheritance
+class Bike extends Car2 {
+  //Add some new properties and "methods" as well
+  constructor(company, model, engineCapacity) {
+    super(company, model); //sets in the color and model in th e
+    this.engineCapacity = engineCapacity;
+  }
+  bikeMethod() {
+    console.log("Bike Method");
+  }
+}
+let newBike = new Bike("Suzuki", 2022, "2000CC");
+console.log(newBike);
+newBike.bikeMethod();
+console.log(newBike.__proto__); //shows the prototype methods of bike
+console.log(newBike.__proto__.__proto__); //shows the prototype methods of car
+//Chaining of methods
+class lockerBook {
+  constructor(owner, pin) {
+    this.owner = owner;
+    this.pin = pin;
+    this.operations = [];
+  }
+  get getOperations() {
+    return this.operations;
+  }
+  deposit(amount) {
+    this.operations.push(amount);
+    return this;
+  }
+  withdraw(amount) {
+    this.deposit(-amount);
+    return this;
+  }
+}
+
+let account = new lockerBook("Subham", 123);
+console.log(account);
+account.deposit(53);
+console.log(account.getOperations);
+account.withdraw(33);
+console.log(account.getOperations);
+//using chaining
+account.deposit(23).withdraw(11);
+console.log(account.getOperations);
+//Asynchronous Javascript
+//Async
+console.log(1);
+console.log(2);
+
+setTimeout(() => {
+  // console.log(3);
+}, 1000); //It is not going the block the below code because of async nature
+console.log(4);
+console.log(5);
+//Making HTTP requests
+
+//value   state           Description
+//0        UNSENT         The request has been created. The open() method has not been called yet.
+//1        OPENED         The open() method has been called.
+//2        HEADERS_RECEIVED The send() method has been called, and the HTTP request headers and status code are available.
+//3        LOADING        The responseText property has some partial data.
+//4        DONE           The responseText property has the complete response.
+
+//HTTP Response status code
+//Informational resonse(100-199)
+//Successful response(200-299)
+//Redirection(300-399)
+//Client error(400-499)
+//Server error(500-599)
+
+function todos(callbacks) {
+  let request = new XMLHttpRequest();
+  console.log(request);
+  request.open("GET", "https://jsonplaceholder.typicode.com/todos");
+  // request.open("GET", "https://jsonplaceholder.typicode.com/todos1");//giving 404 error
+  request.send();
+  request.addEventListener("readystatechange", () => {
+    // console.log(request, request.readyState); //It is showing the ready state
+    if (request.readyState == 4 && request.status === 200) {
+      // console.log(request.responseText, request.status); //It is showing the response text
+
+      callbacks(undefined, request.responseText);
+    } else if (request.readyState === 4) {
+      callbacks("Data could not be fetched", undefined);
+    }
+  });
+}
+//callbacks
+todos((err, data) => {
+  if (err) {
+    console.log(err);
+  } else {
+    // console.log(JSON.parse(data)); //changing the string into object
+  }
+});
+console.log(1); //It is to show that the todos is a async code
+//Callback hells
+todos = (resource, callback) => {
+  let request = new XMLHttpRequest();
+  // console.log(request);
+  request.open("GET", resource);
+  request.send();
+  request.addEventListener("readystatechange", () => {
+    // console.log(request, request.readyState); //It is showing the ready state
+    if (request.readyState == 4 && request.status === 200) {
+      // console.log(request.responseText, request.status); //It is showing the response text
+
+      callback(undefined, request.responseText);
+    } else if (request.readyState === 4) {
+      callback("Data could not be fetched", undefined);
+    }
+  });
+};
+//Callback hell
+todos("https://jsonplaceholder.typicode.com/todos", (err, data) => {
+  if (err) {
+    // console.log(err);
+  } else {
+    // console.log(JSON.parse(data)); //changing the string into object
+  }
+  todos("https://jsonplaceholder.typicode.com/todos/1", (err, data) => {
+    if (err) {
+      // console.log(err);
+    } else {
+      // console.log(JSON.parse(data)); //changing the string into object
+    }
+    todos("https://jsonplaceholder.typicode.com/todos/2", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(JSON.parse(data)); //changing the string into object
+      }
+    });
+  });
+});
+//Promise
+let getSomething = () => {
+  return new Promise((resolve, reject) => {
+    // resolve("Some data");
+    reject("Some error");
+  });
+};
+
+getSomething()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => console.log(err));
+
+todos = (resource) => {
+  return new Promise((resolve, reject) => {
+    let request = new XMLHttpRequest();
+    request.open("GET", resource);
+    request.send();
+
+    request.addEventListener("readystatechange", () => {
+      if (request.readyState == 4 && request.status === 200) {
+        resolve(request.responseText);
+      } else if (request.readyState === 4) {
+        reject("Could not fetch the data");
+      }
+    });
+  });
+};
+
+todos("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => {
+    // console.log(JSON.parse(data));
+    return todos("https://jsonplaceholder.typicode.com/todos/2");
+  })
+  .then((data) => {
+    // console.log(JSON.parse(data));
+    return todos("https://jsonplaceholder.typicode.com/todos/3");
+    // return todos("https://jsonplaceholder.typicode.com/todos1/3");//This will only give one error,not multerrors like promises
+  })
+  .then((data) => {
+    // console.log(JSON.parse(data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+//FetchAPI
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then((response) => {
+    // console.log("promise resolved", response);
+    return response.json();
+  })
+  .then((data) => {
+    // console.log(data);
+  })
+  .catch((err) => {
+    console.log("error occured", err);
+  });
+
+// async/await
+function getProduct() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/todos/1"
+      );
+      if (response.status != 200) {
+        throw new Error("response not got");
+      }
+      const data = await response.json();
+      resolve(data);
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+getProduct()
+  .then((data) => {
+    // console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+//Array destructuring
+console.log(num);
+[first, second] = num;
+console.log(first);
+console.log(second);
+[first, , , fourth] = num;
+console.log(fourth);
+//swipping numbers using destrcturing
+[first, fourth] = [fourth, first];
+console.log("first", first);
+console.log("fourth", fourth);
+//Object destructuring
+let hotel = {
+  name: "hotel",
+  location: "Street xyz",
+  price: 1000,
+  customer: ["Subham", "Dehitara", "Cux"],
+};
+let { name, price } = hotel;
+console.log(name);
+console.log(price);
+let { name: hotelName, price: hotelRent } = hotel;
+console.log(hotelName);
+console.log(hotelRent);
+//We can give a default value also
+let { nameOfHotel = "Dex", customer = [] } = hotel;
+console.log(nameOfHotel);
+console.log(customer);
+//spread operators
+console.log(...num);
+let newNum = [1, 2, 3, ...num, 33, 44];
+console.log(newNum);
+console.log(...str);
+str = "subham das";
+console.log(...str);
+//Rest Operator
+let [num1, num4, ...newNum2] = newNum;
+console.log(num1);
+console.log(num4);
+console.log(newNum2);
+//Short circuiting
+//False value=>0,False,null,undefined,''(empty string)
+result = "programmers" && "coders";
+console.log(result);
+result = "" && "coders";
+console.log(result);
+result = "" || "coders";
+console.log(result);
+result = "programmers" || "coders";
+console.log(result);
+//Nullish Qualescing - only null and undefined are falsy value
+result = "programmers" ?? "coders";
+console.log(result);
+result = "" ?? "coders";
+console.log(result);
+result = 0 ?? "coders";
+console.log(result);
+result = null ?? "coders";
+console.log(result);
+console.log(newNum);
+//forof loop
+for (const iterator of newNum) {
+  console.log(iterator);
+}
+//This will give index also
+for (const [key, iterator] of newNum.entries()) {
+  console.log(key, iterator);
+}
+
+for (const key in newNum) {
+  console.log(key); //Here we can also use for in but it will give us a string value
+}
+//Optional chaining
+
+let obj1 = {
+  name: "Subham",
+  place: "Siliguri",
+  talent: { blockchain: 90, webDev: 44 },
+};
+console.log(obj1.name); //if it is available it will just give the output
+// console.log(obj1.talent1.cpp);//It will give undefined because talent1 is not available
+console.log(obj1.talent1?.cpp); //It will check first whether talent1 is available or not otherwaise it will give a undefined,its like
+if (obj1.talent1 && obj1.talent1.cpp) {
+  console.log(obj1.talent1.cpp);
+}
+//Getting keys and values in objects
+console.log(Object.keys(obj1));
+console.log(Object.values(obj1));
+console.log(Object.entries(obj1));
+//Sets
+let itemSet = new Set([1, 2, 3, 4, 3, 3, 2, 34, 3, 234, 23, 423]);
+console.log(itemSet);
+console.log(itemSet.size);
+console.log(itemSet.has(2));
+console.log(itemSet.has(9));
+//Maps
+let ownerMap = new Map();
+ownerMap.set(1, "Subham");
+ownerMap.set(2, "Das");
+ownerMap.set("FirstName", "Subham");
+ownerMap.set("Surname", "Das");
+console.log(ownerMap);
+console.log(ownerMap.get(2));
+console.log(ownerMap.get("FirstName"));
+ownerMap.set(true, "I am available today").set(false, "I am closed today");
+console.log(ownerMap);
