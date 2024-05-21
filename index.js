@@ -634,7 +634,7 @@ console.log(new Date().getHours());
 //Making a clock
 let hour = document.querySelector(".hour");
 let minute = document.querySelector(".minute");
-let second = document.querySelector(".second");
+let seconds = document.querySelector(".second");
 
 setInterval(() => {
   hour.textContent =
@@ -642,8 +642,8 @@ setInterval(() => {
       ? new Date().getHours() - 12
       : new Date().getHours();
   minute.textContent = new Date().getMinutes();
-  second.textContent = new Date().getSeconds();
-}, 500);
+  seconds.textContent = new Date().getSeconds();
+}, 1000);
 //Localstorage
 console.log(localStorage);
 //setitem
@@ -1081,3 +1081,4 @@ console.log(ownerMap.get(2));
 console.log(ownerMap.get("FirstName"));
 ownerMap.set(true, "I am available today").set(false, "I am closed today");
 console.log(ownerMap);
+console.log(second);
