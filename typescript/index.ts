@@ -294,8 +294,174 @@ console.log(subham);
 // we can also declare user as
 class User5 {
   private readonly city: string = "siliguri";
+
   constructor(public email: string, public name: string) {
     this.email = email;
     this.name = name;
   }
 }
+//Getter and setters
+class User6 {
+  private readonly city: string = "siliguri";
+  private courseAmount: number = 1;
+  protected isFamily: boolean = false;
+  constructor(public email: string, public name: string) {
+    this.email = email;
+    this.name = name;
+  }
+  get getCourseAmount(): number {
+    return this.courseAmount;
+  }
+  set setCourseAmount(amount: number) {
+    this.courseAmount = amount;
+  }
+}
+
+let newUser = new User6("s@gmail.com", "subham");
+console.log(newUser.getCourseAmount);
+newUser.setCourseAmount = 12;
+console.log(newUser.getCourseAmount);
+
+//protected-isFamily is protected in User6
+class User7 extends User6 {
+  get getFamily() {
+    return this.isFamily;
+  }
+  set setFamily(val: boolean) {
+    this.isFamily = val;
+  }
+}
+
+let newUser1 = new User7("s@gmail.com", "subham");
+console.log(newUser1);
+console.log(newUser1.getFamily);
+newUser1.setFamily = true;
+console.log(newUser1.getFamily);
+//Interfaces usefulness in class
+interface TakePhoto {
+  cameraMode: string;
+  filter: string;
+  burst: number;
+}
+interface CreateStory {
+  createStory(): void;
+}
+
+class Instagram implements TakePhoto, CreateStory {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burst: number
+  ) {}
+  createStory(): void {
+    console.log("create Story Implimented");
+  }
+}
+
+const app = new Instagram("click", "voip", 34);
+app.createStory();
+//Abstract class
+abstract class TakeVideo {
+  constructor(public cameraMode: string, public filter: string) {}
+  abstract clickVideo(): boolean;
+}
+
+class Mobile extends TakeVideo {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burst: number
+  ) {
+    super(cameraMode, filter);
+    this.burst = burst;
+  }
+  clickVideo(): boolean {
+    return true;
+  }
+}
+
+let samsung = new Mobile("Click", "Wafa", 2);
+console.log(samsung);
+//Generics
+const sc1: Array<number> = [];
+const sc2: Array<string> = [];
+function identityOne(val: number | string): number | string {
+  //It can return any value of number or string , it may return string if you give it number as parameter
+  return val;
+}
+function identityTwo(val: any): any {
+  //It will return a datatype of any value given to it
+  return val;
+}
+
+function identityThree<Type>(val: Type): Type {
+  //Now it will only return the datatype value which is passed in the parameters like if you give it integer , it will return a integer
+  return val;
+}
+
+//or you can also write identityThree function as
+function identityFour<T>(val: T): T {
+  return val;
+}
+console.log(identityFour(2));
+//You can also make your own datatype using type or interface
+console.log(
+  identityFour<TakePhoto>({ cameraMode: "click", filter: "voib", burst: 3 })
+);
+//Generics in array and arrow function
+let product: Array<Number> = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+function identityFive<T>(product: Array<T>): T {
+  return product[2];
+}
+//You can also write as
+function identitySix<T>(product: T[]): T {
+  return product[2];
+}
+console.log(identityFive(product));
+//For arrow functions
+const identitySeven = <T>(product: Array<T>): T => {
+  return product[3];
+};
+const identityEight = <T>(product: T[]): T => {
+  return product[3];
+};
+
+console.log(identitySeven(product));
+//Generic classes
+
+function identityTen<T, U>(valOne: T, valTwo: U): object {
+  return { valOne, valTwo };
+}
+
+console.log(identityTen(2, "subham"));
+interface Database {
+  connection: string;
+  username: string;
+  password: string;
+}
+function identityEleven<T, U extends Database>(valOne: T, valTwo: U): object {
+  return { valOne, valTwo };
+}
+
+console.log(
+  identityEleven(2, {
+    connection: "MongoDB",
+    username: "subham",
+    password: "1234456676",
+  })
+);
+
+class Sellable<T> {
+  public cart: T[] = [];
+  public addToCart(product: T) {
+    this.cart.push(product);
+  }
+  get getCart(): T[] {
+    return this.cart;
+  }
+}
+
+let sel1 = new Sellable<number>();
+sel1.addToCart(2);
+sel1.addToCart(34);
+console.log(sel1.getCart);

@@ -251,3 +251,140 @@ class User5 {
         this.name = name;
     }
 }
+//Getter and setters
+class User6 {
+    constructor(email, name) {
+        this.email = email;
+        this.name = name;
+        this.city = "siliguri";
+        this.courseAmount = 1;
+        this.isFamily = false;
+        this.email = email;
+        this.name = name;
+    }
+    get getCourseAmount() {
+        return this.courseAmount;
+    }
+    set setCourseAmount(amount) {
+        this.courseAmount = amount;
+    }
+}
+let newUser = new User6("s@gmail.com", "subham");
+console.log(newUser.getCourseAmount);
+newUser.setCourseAmount = 12;
+console.log(newUser.getCourseAmount);
+//protected-isFamily is protected in User6
+class User7 extends User6 {
+    get getFamily() {
+        return this.isFamily;
+    }
+    set setFamily(val) {
+        this.isFamily = val;
+    }
+}
+let newUser1 = new User7("s@gmail.com", "subham");
+console.log(newUser1);
+console.log(newUser1.getFamily);
+newUser1.setFamily = true;
+console.log(newUser1.getFamily);
+class Instagram {
+    constructor(cameraMode, filter, burst) {
+        this.cameraMode = cameraMode;
+        this.filter = filter;
+        this.burst = burst;
+    }
+    createStory() {
+        console.log("create Story Implimented");
+    }
+}
+const app = new Instagram("click", "voip", 34);
+app.createStory();
+//Abstract class
+class TakeVideo {
+    constructor(cameraMode, filter) {
+        this.cameraMode = cameraMode;
+        this.filter = filter;
+    }
+}
+class Mobile extends TakeVideo {
+    constructor(cameraMode, filter, burst) {
+        super(cameraMode, filter);
+        this.cameraMode = cameraMode;
+        this.filter = filter;
+        this.burst = burst;
+        this.burst = burst;
+    }
+    clickVideo() {
+        return true;
+    }
+}
+let samsung = new Mobile("Click", "Wafa", 2);
+console.log(samsung);
+//Generics
+const sc1 = [];
+const sc2 = [];
+function identityOne(val) {
+    //It can return any value of number or string , it may return string if you give it number as parameter
+    return val;
+}
+function identityTwo(val) {
+    //It will return a datatype of any value given to it
+    return val;
+}
+function identityThree(val) {
+    //Now it will only return the datatype value which is passed in the parameters like if you give it integer , it will return a integer
+    return val;
+}
+//or you can also write identityThree function as
+function identityFour(val) {
+    return val;
+}
+console.log(identityFour(2));
+//You can also make your own datatype using type or interface
+console.log(identityFour({ cameraMode: "click", filter: "voib", burst: 3 }));
+//Generics in array and arrow function
+let product = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+function identityFive(product) {
+    return product[2];
+}
+//You can also write as
+function identitySix(product) {
+    return product[2];
+}
+console.log(identityFive(product));
+//For arrow functions
+const identitySeven = (product) => {
+    return product[3];
+};
+const identityEight = (product) => {
+    return product[3];
+};
+console.log(identitySeven(product));
+//Generic classes
+function identityTen(valOne, valTwo) {
+    return { valOne, valTwo };
+}
+console.log(identityTen(2, "subham"));
+function identityEleven(valOne, valTwo) {
+    return { valOne, valTwo };
+}
+console.log(identityEleven(2, {
+    connection: "MongoDB",
+    username: "subham",
+    password: "1234456676",
+}));
+class Sellable {
+    constructor() {
+        this.cart = [];
+    }
+    addToCart(product) {
+        this.cart.push(product);
+    }
+    get getCart() {
+        return this.cart;
+    }
+}
+let sel1 = new Sellable();
+sel1.addToCart(2);
+sel1.addToCart(34);
+console.log(sel1.getCart);
