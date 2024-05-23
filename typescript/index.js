@@ -3,7 +3,6 @@
 console.log("I am starting typescript");
 //Typeannotation
 // let num1 = 5;//Here typescript is smart that it can detect that it is a numebr, you can also declare it by :number
-// @ts-ignore
 let num1 = 5;
 num1 = 23;
 console.log(num1);
@@ -476,3 +475,6 @@ function getArea1(shape) {
             return _exhaustiveCheck;
     }
 }
+console.log(getArea1({ kind: "circle", radius: 4 }));
+console.log(getArea1({ kind: "square", sideLength: 4 }));
+console.log(getArea1({ kind: "rectangle", length: 4, breadth: 2 }));
