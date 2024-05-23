@@ -388,3 +388,91 @@ let sel1 = new Sellable();
 sel1.addToCart(2);
 sel1.addToCart(34);
 console.log(sel1.getCart);
+//Type Narrowing
+function detectType(val) {
+    if (typeof val === "string") {
+        return val.toLowerCase();
+    }
+    return val + 3;
+}
+//Here the string can be a null like ""
+//so we can use something like
+function detectType1(val) {
+    if (!val) {
+        console.log("This is a null value");
+        return val;
+    }
+    else if (typeof val === "string") {
+        return val.toLowerCase();
+    }
+    return val + 2;
+}
+detectType1("");
+function isAdminLogin(account) {
+    if ("isAdmin" in account) {
+        console.log("This is an admin account");
+        return account;
+    }
+    else {
+        console.log("This is a user account");
+        return account;
+    }
+}
+console.log(isAdminLogin({ name: "Subham", email: "s@gmail.com" }));
+console.log(isAdminLogin({ name: "Subham", email: "s@gmail.com", isAdmin: false }));
+//InstanceOf
+function logValue(x) {
+    if (x instanceof Date) {
+        return x.toUTCString();
+    }
+    else if (typeof x === "string") {
+        return x.toUpperCase();
+    }
+    else {
+        return x;
+    }
+}
+console.log(logValue(new Date()));
+console.log(logValue(new Array(1, 2, 3)));
+function isFish(pet) {
+    return pet.swim !== undefined;
+}
+function getFood(pet) {
+    if (isFish(pet)) {
+        return "fish food";
+    }
+    else {
+        return "bird food";
+    }
+}
+console.log(getFood({
+    swim: () => {
+        console.log("This is for the fish");
+    },
+}));
+console.log(getFood({
+    fly: () => {
+        console.log("This is for the bird");
+    },
+}));
+function getArea(shape) {
+    if (shape.kind == "circle") {
+        return Math.PI * shape.radius ** 2;
+    }
+    else if (shape.kind == "square") {
+        return shape.sideLength ** 2;
+    }
+}
+function getArea1(shape) {
+    switch (shape.kind) {
+        case "circle":
+            return Math.PI * shape.radius ** 2;
+        case "square":
+            return shape.sideLength ** 2;
+        case "rectangle":
+            return shape.length * shape.breadth;
+        default:
+            const _exhaustiveCheck = shape; //If we remove any of these , the exhaustive check will give an error
+            return _exhaustiveCheck;
+    }
+}

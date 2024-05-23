@@ -465,3 +465,127 @@ let sel1 = new Sellable<number>();
 sel1.addToCart(2);
 sel1.addToCart(34);
 console.log(sel1.getCart);
+//Type Narrowing
+function detectType(val: number | string) {
+  if (typeof val === "string") {
+    return val.toLowerCase();
+  }
+  return val + 3;
+}
+//Here the string can be a null like ""
+//so we can use something like
+function detectType1(val: string | number | null) {
+  if (!val) {
+    console.log("This is a null value");
+    return val;
+  } else if (typeof val === "string") {
+    return val.toLowerCase();
+  }
+  return val + 2;
+}
+
+detectType1("");
+
+//Operator narrowing
+interface UserLogin {
+  name: string;
+  email: string;
+}
+interface AdminLogin {
+  name: string;
+  email: string;
+  isAdmin: boolean;
+}
+function isAdminLogin(account: UserLogin | AdminLogin): UserLogin | AdminLogin {
+  if ("isAdmin" in account) {
+    console.log("This is an admin account");
+    return account;
+  } else {
+    console.log("This is a user account");
+    return account;
+  }
+}
+console.log(isAdminLogin({ name: "Subham", email: "s@gmail.com" }));
+console.log(
+  isAdminLogin({ name: "Subham", email: "s@gmail.com", isAdmin: false })
+);
+//InstanceOf
+function logValue(
+  x: Date | string | Array<number>
+): Date | string | Array<number> {
+  if (x instanceof Date) {
+    return x.toUTCString();
+  } else if (typeof x === "string") {
+    return x.toUpperCase();
+  } else {
+    return x;
+  }
+}
+console.log(logValue(new Date()));
+console.log(logValue(new Array(1, 2, 3)));
+
+//Type predicates
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+function getFood(pet: Fish | Bird) {
+  if (isFish(pet)) {
+    return "fish food";
+  } else {
+    return "bird food";
+  }
+}
+
+console.log(
+  getFood({
+    swim: () => {
+      console.log("This is for the fish");
+    },
+  })
+);
+console.log(
+  getFood({
+    fly: () => {
+      console.log("This is for the bird");
+    },
+  })
+);
+//Descriminated Union and exhaustiveness checking
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+interface Rectangle {
+  kind: "rectangle";
+  length: number;
+  breadth: number;
+}
+
+type Shape = Circle | Square | Rectangle;
+function getArea(shape: Shape) {
+  if (shape.kind == "circle") {
+    return Math.PI * shape.radius ** 2;
+  } else if (shape.kind == "square") {
+    return shape.sideLength ** 2;
+  }
+}
+
+function getArea1(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "square":
+      return shape.sideLength ** 2;
+    case "rectangle":
+      return shape.length * shape.breadth;
+    default:
+      const _exhaustiveCheck: never = shape; //If we remove any of these , the exhaustive check will give an error
+      return _exhaustiveCheck;
+  }
+}
