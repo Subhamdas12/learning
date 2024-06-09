@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js">
+
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            // document.write("My first script! By Subham Das")
+            //Hide an element
+            $("button").click(function () {
+                // $("div").hide();
+            });
+            //Show an element
+            $("#demo").click(function () {
+                $("div").show();
+            });
+
+            //Change the text
+            $(".changeTheName").click(function () {
+                $(".name").text("Das Subham");
+            });
+
+            //Hide the same element and using this
+            $("#hide").click(function () {
+                $(this).hide();
+            });
+
+            //Toggle the element
+
+            $("#toggle").click(function () {
+                $("#toggleDemo").toggle();
+            });
+
+            //Fade in and out element
+            $("#fadeIn").click(function () {
+                $("#fadeDemo").fadeIn("slow");
+            });
+            $("#fadeOut").click(function () {
+                $("#fadeDemo1").fadeOut("slow");
+            });
+            $("#fadeInAndOut").click(function () {
+                //you can set slow, fast and time in fades
+                // $('#fadeDemo2').fadeToggle("slow");
+                $("#fadeDemo2").fadeToggle(2000); //You can also set the time in fades by using this
+            });
+            //slide down
+            $(".slide").click(function () {
+                // $(".slide-demo").slideDown();
+                // $(".slide-demo").slideDown("fast");
+                // $(".slide-demo").slideDown(2000);
+                $(".slide-demo").slideDown("slow");
+                $(".slide-demo1").slideUp("slow");
+                $(".slide-demo2").slideToggle("fast");
+            });
+            //Animations
+
+            $("#animation").click(function () {
+                $("#animation-demo").animate({
+                    width: "300px",
+                    height: "300px",
+                    fontSize: "50px",
+                    left: "200px",
+                });
+            });
+        });
+        //element selector
+        //Finding the ansistors of elements
+    </script>
+    <style>
+        #fadeIn {
+            color: rgb(215, 65, 65)
+        }
+
+        #fadeIn {
+            color: rgb(65, 215, 197)
+        }
+
+        #fadeInAndOut {
+            color: rgb(97, 65, 215)
+        }
+
+        #fadeDemo {
+            display: none;
+        }
+
+        .slide {
+            border: 2px;
+            border-color: red;
+            border-style: solid;
+            color: red;
+            background-color: gray;
+            padding: 23px;
+            margin-bottom: 0%;
+            margin-top: 0%;
+
+        }
+
+        .slide-demo {
+            display: none;
+        }
+
+        .slide-demo1 {
+            margin-top: 7rem;
+            background: green;
+        }
+
+        .slide-demo2 {
+            background: blue;
+            color: wheat;
+        }
+
+        #animation {
+            border: 2px solid gray;
+            margin-top: 2%;
+            padding: 12px;
+            background-color: blue;
+            color: white
+        }
+
+        #animation:hover {
+            transition: all 0.5s ease-in-out;
+            background-color: rgb(88, 88, 255);
+        }
+
+        #animation-demo {
+            padding: 2rem;
+            background-color: pink;
+            width: 12rem;
+            height: 12rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: absolute
+        }
+
+        .ansistors {
+            margin-top: 22rem;
+        }
+
+        .ansistors * {
+            border: 2px solid red;
+            padding: 12px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Click me to hide the div</button>
+    <button id="demo">Click me to show the div</button>
+    <h1>Subham Das</h1>
+    <div class="">This is the div you can hide</div>
+    <h1 class="name">Subham Das</h1>
+    <button class="changeTheName">Click me to Change the Name</button>
+    <h2 id="hide" style="color: red">This elemnt will hide itself if you click on it</h2>
+    <button id="toggle" style="color:white; border: 2px solid black ;padding : 10px; background: red;">Toggle</button>
+    <h2 id="toggleDemo">This is for the test of toggle feature</h2>
+    <h2 id="fadeIn" style=" ">Fade In</h2>
+    <h2 id="fadeOut" style=" ">Fade
+        Out</h2>
+    <h2 id="fadeInAndOut" style=" ">Fade In and
+        Out</h2>
+    <p id="fadeDemo">This will be fade</p>
+    <p id="fadeDemo1">This will be fade1</p>
+    <p id="fadeDemo2">This will be fade2</p>
+    <h1 class="slide">Slide</h1>
+    <h1 class="slide slide-demo">This is the demo of the slide down effect</h1>
+    <h1 class="slide slide-demo1">This is the demo of the slide up effect</h1>
+    <h1 class="slide slide-demo2">This is the demo of the slide toggle</h1>
+    <button id="animation">Click Me for animation</button>
+    <h5>Click on the above button to see the animation</h5>
+    <div id="animation-demo">
+        This is for the demo of animation
+    </div>
+
+</body>
+
+</html>
